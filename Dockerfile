@@ -1,11 +1,11 @@
 FROM golang:1.19-alpine
-WORKDIR /app
 
+WORKDIR /app
 
 COPY go.mod ./
 COPY go.sum ./
-
+RUN go mod download
 COPY *.go ./
-RUN  go build -o /go_api1
-EXPOSE 8909
-CMD [ "app/go_api1" ]
+RUN go build -o /go_api 
+EXPOSE 8080
+CMD [ "/go_api" ]  
